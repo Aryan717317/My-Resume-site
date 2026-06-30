@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryan Bharat Kumar - Portfolio</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --paper:#ede5d3;--paper2:#f4eedf;--paper3:#e3dac4;
+  --ink:#2e2a20;--ink2:#5c5440;--ink3:#8c8268;
+  --line:#c9bd9e;--line2:#b3a587;
+  --gold:#8a6d3b;--gold2:#a3804a;--goldlt:#c9a25e;
+  --olive:#5e6440;--rust:#8c5234;
+  --serif:'Cormorant Garamond',serif;--serif2:'EB Garamond',serif;--sans:'Jost',sans-serif;
+}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--serif2);min-height:100vh;
+  background-image:repeating-linear-gradient(0deg, rgba(140,130,104,0.035) 0px, transparent 1px, transparent 2px);
+  position:relative;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes wobble{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+@keyframes popIn{0%{transform:scale(0.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes seal{0%{transform:scale(1.4) rotate(-12deg);opacity:0}100%{transform:scale(1) rotate(-12deg);opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes inkRipple{0%{transform:scale(0);opacity:.55}100%{transform:scale(14);opacity:0}}
+@keyframes pageFlipOut{0%{transform:perspective(1000px) rotateY(0deg);opacity:1}100%{transform:perspective(1000px) rotateY(-90deg);opacity:0}}
+@keyframes pageFlipIn{0%{transform:perspective(1000px) rotateY(90deg);opacity:0}100%{transform:perspective(1000px) rotateY(0deg);opacity:1}}
+@keyframes shimmerSweep{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes cardFlyOut{0%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}100%{transform:translate(var(--dx,0px),var(--dy,-40px)) rotate(var(--dr,180deg)) scale(0.6);opacity:0}}
+@keyframes cardFlyIn{0%{transform:translate(var(--sx,0px),var(--sy,-40px)) rotate(var(--sr,-180deg)) scale(0.6);opacity:0}100%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}}
+@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(160px) rotate(360deg);opacity:0}}
+@keyframes pulseRing{0%{transform:scale(0.9);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+@keyframes typeCaret{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes sealStamp{0%{transform:scale(2.6) rotate(8deg);opacity:0}55%{transform:scale(0.9) rotate(-4deg);opacity:1}75%{transform:scale(1.1) rotate(2deg)}100%{transform:scale(1) rotate(0deg);opacity:1}}
+@keyframes magnify{0%{transform:scale(1)}100%{transform:scale(1.6)}}
+@keyframes driftSlow{0%{transform:translateX(0)}100%{transform:translateX(-12px)}}
+
+.page{max-width:680px;margin:0 auto;padding:0 4px;position:relative}
+
+.cursor-trail{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--goldlt);pointer-events:none;z-index:998;opacity:0;transition:opacity .2s}
+
+.progress-rail{position:sticky;top:0;height:3px;background:var(--line);z-index:50;overflow:hidden}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold2),var(--goldlt));transition:width .15s ease-out}
+
+.masthead{text-align:center;padding:28px 10px 18px;border-bottom:2px solid var(--ink);position:relative;overflow:hidden}
+.masthead-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:9px;letter-spacing:3px;color:var(--ink3);text-transform:uppercase;margin-bottom:18px;padding:0 4px}
+.crest{width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:var(--serif);font-size:14px;color:var(--gold2);cursor:pointer;transition:transform .2s;user-select:none;position:relative}
+.crest:hover{transform:scale(1.15)}
+.crest.wobbling{animation:wobble .4s ease}
+.crest-ripple{position:absolute;inset:0;border-radius:50%;border:1px solid var(--goldlt);pointer-events:none;animation:pulseRing .6s ease-out forwards}
+.masthead-name{font-family:var(--serif);font-size:clamp(2.2rem,6vw,3.2rem);font-weight:500;letter-spacing:4px;color:var(--ink);line-height:1.1;text-transform:uppercase;cursor:default;position:relative;display:inline-block}
+.masthead-name .lt{display:inline-block;transition:transform .25s, color .25s}
+.masthead-name .lt:hover{transform:translateY(-6px);color:var(--gold)}
+.masthead-sub{font-family:var(--sans);font-size:10px;letter-spacing:4px;color:var(--gold2);text-transform:uppercase;margin-top:10px}
+.masthead-tagline{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink2);margin-top:10px;min-height:20px}
+.masthead-tagline .caret{display:inline-block;width:1px;height:14px;background:var(--gold2);vertical-align:middle;margin-left:2px;animation:typeCaret 1s step-end infinite}
+.masthead-meta{display:flex;justify-content:center;gap:18px;margin-top:14px;font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase}
+.masthead-meta span::before{content:'—';color:var(--goldlt);margin-right:6px}
+.masthead-meta span:first-child::before{display:none}
+
+.click-counter{position:absolute;top:6px;right:6px;font-family:var(--sans);font-size:7px;letter-spacing:1px;color:var(--line2);opacity:0;transition:opacity .3s}
+.click-counter.show{opacity:1}
+
+.egg-tracker{display:flex;justify-content:center;align-items:center;gap:6px;padding:7px 0;background:var(--paper3);font-family:var(--sans);font-size:8px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;border-bottom:1px solid var(--line)}
+.egg-dot{width:5px;height:5px;border-radius:50%;background:var(--line2);transition:background .3s, transform .3s}
+.egg-dot.lit{background:var(--gold);transform:scale(1.4)}
+
+.nav-strip{display:flex;justify-content:center;gap:0;border-bottom:1px solid var(--line);background:var(--paper2);position:relative}
+.nav-item{font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);padding:12px 18px;cursor:pointer;border-right:1px solid var(--line);transition:all .25s;position:relative;overflow:hidden}
+.nav-item:last-child{border-right:none}
+.nav-item:hover{color:var(--ink);background:var(--paper3)}
+.nav-item.on{color:var(--gold);background:var(--paper)}
+.nav-item.on::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:24px;height:2px;background:var(--gold);animation:popIn .3s ease}
+.nav-item.secret{color:var(--rust);display:none}
+.nav-item.secret.unlocked{display:block;animation:popIn .5s ease}
+.nav-item .ripple{position:absolute;border-radius:50%;background:rgba(138,109,59,0.25);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+
+.flip-stage{perspective:1400px}
+.section{display:none;padding:32px 22px 36px;transform-style:preserve-3d}
+.section.on{display:block;animation:fadeUp .45s ease both}
+.section.flip-out{display:block;animation:pageFlipOut .35s ease forwards}
+.section.flip-in{display:block;animation:pageFlipIn .35s ease forwards}
+
+.sec-eyebrow{font-family:var(--sans);font-size:9px;letter-spacing:4px;color:var(--gold2);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--line2)}
+.sec-title{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.1rem);font-weight:500;color:var(--ink);letter-spacing:.5px;margin-bottom:24px}
+
+.letter{font-family:var(--serif2);font-size:15.5px;line-height:1.95;color:var(--ink2)}
+.letter .drop{font-family:var(--serif);font-size:3.4rem;float:left;line-height:0.8;padding:6px 8px 0 0;color:var(--gold);font-weight:500}
+.letter p{margin-bottom:14px}
+
+.divider-orn{display:flex;align-items:center;gap:12px;margin:26px 0;color:var(--goldlt)}
+.divider-orn::before,.divider-orn::after{content:'';flex:1;height:1px;background:var(--line2)}
+.divider-orn span{font-family:var(--serif);font-size:14px}
+
+.stat-table{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:24px 0}
+.stat-cell{text-align:center;padding:16px 8px;border-right:1px solid var(--line);cursor:pointer;transition:background .2s}
+.stat-cell:hover{background:var(--paper3)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:500;line-height:1;display:inline-block}
+.stat-label{font-family:var(--sans);font-size:8px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-top:6px}
+
+.prov-entry{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.prov-entry:last-child{border-bottom:none}
+.prov-date{font-family:var(--sans);font-size:9px;letter-spacing:1px;color:var(--ink3);text-transform:uppercase;padding-top:3px}
+.prov-role{font-family:var(--serif);font-size:1.2rem;color:var(--ink);font-weight:500}
+.prov-org{font-family:var(--serif2);font-style:italic;font-size:13px;color:var(--gold2);margin:2px 0 8px}
+.prov-list{list-style:none;font-size:13px;color:var(--ink2);line-height:1.8}
+.prov-list li{padding-left:14px;position:relative;margin-bottom:3px}
+.prov-list li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--gold2)}
+
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.phil-cell{background:var(--paper2);padding:18px;cursor:pointer;transition:background .2s, transform .2s;position:relative;overflow:hidden}
+.phil-cell:hover{background:var(--paper3);transform:scale(1.02);z-index:2}
+.phil-cell:active{transform:scale(0.98)}
+.phil-num{font-family:var(--serif);font-size:11px;color:var(--goldlt);letter-spacing:2px;margin-bottom:6px}
+.phil-title{font-family:var(--serif);font-size:16px;color:var(--ink);font-weight:500;margin-bottom:6px}
+.phil-desc{font-size:12.5px;color:var(--ink2);line-height:1.7}
+.ink-burst{position:absolute;border-radius:50%;background:radial-gradient(circle,var(--goldlt) 0%,transparent 70%);pointer-events:none;animation:inkRipple .6s ease-out forwards}
+
+.cat-entry{padding:20px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:padding-left .2s}
+.cat-entry:hover{padding-left:6px}
+.cat-entry:last-child{border-bottom:none}
+.cat-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:12px}
+.cat-num{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--goldlt);transition:color .2s}
+.cat-entry:hover .cat-num{color:var(--gold)}
+.cat-title{font-family:var(--serif);font-size:1.25rem;color:var(--ink);font-weight:500;flex:1}
+.cat-tag{font-family:var(--sans);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);border:1px solid var(--gold2);padding:3px 9px;white-space:nowrap;transition:background .2s, color .2s}
+.cat-entry:hover .cat-tag{background:var(--gold2);color:var(--paper2)}
+.cat-desc{font-size:13.5px;color:var(--ink2);line-height:1.8;margin-bottom:10px}
+.cat-materials{font-family:var(--sans);font-size:9px;letter-spacing:1px;color:var(--ink3);text-transform:uppercase}
+.cat-materials b{color:var(--gold2);font-weight:500}
+
+.accolade{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.accolade:last-child{border-bottom:none}
+.acc-mark{font-family:var(--serif);font-size:22px;color:var(--gold);font-weight:500;width:36px;text-align:center;flex-shrink:0}
+.acc-title{font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:500}
+.acc-sub{font-size:12.5px;color:var(--ink2);line-height:1.7;margin-top:3px}
+
+.ledger-row{display:grid;grid-template-columns:1fr auto;align-items:baseline;padding:9px 0;border-bottom:1px dotted var(--line2);font-family:var(--sans);position:relative}
+.ledger-name{font-size:12.5px;color:var(--ink);letter-spacing:.3px}
+.ledger-mark{font-family:var(--serif);font-style:italic;font-size:12px;color:var(--gold2)}
+.ledger-fill{position:absolute;left:0;bottom:0;height:1px;background:var(--gold);width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.ledger-fill.go{width:var(--w)}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-family:var(--sans);font-size:10px;letter-spacing:.5px;color:var(--ink2);border:1px solid var(--line2);padding:4px 11px;background:var(--paper2);transition:all .2s;cursor:default}
+.chip:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+.cat-block-title{font-family:var(--sans);font-size:9px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin:22px 0 10px;display:flex;align-items:center;gap:10px}
+.cat-block-title::after{content:'';flex:1;height:1px;background:var(--line2)}
+
+.seal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seal{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line2);background:var(--paper2);cursor:pointer;transition:transform .2s, border-color .2s}
+.seal:hover{transform:translateY(-2px);border-color:var(--gold)}
+.seal-icon{width:26px;height:26px;border:1px solid var(--gold);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:11px;color:var(--gold);transition:transform .3s}
+.seal:hover .seal-icon{transform:rotate(360deg)}
+.seal-name{font-family:var(--serif2);font-size:12px;color:var(--ink);line-height:1.5}
+.seal-org{font-family:var(--sans);font-size:8px;letter-spacing:1px;color:var(--ink3);text-transform:uppercase;margin-top:2px}
+
+.journal-entry{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.journal-entry:last-child{border-bottom:none}
+.journal-date{font-family:var(--serif);font-style:italic;font-size:12px;color:var(--gold2);width:78px;flex-shrink:0;padding-top:1px}
+.journal-text{font-size:13px;color:var(--ink2);line-height:1.75}
+.journal-text b{color:var(--ink);font-weight:600;font-family:var(--sans);font-size:11px;letter-spacing:.5px}
+
+.contact-section{text-align:center;padding:40px 22px 36px}
+.contact-eyebrow{font-family:var(--sans);font-size:9px;letter-spacing:4px;color:var(--gold2);text-transform:uppercase;margin-bottom:14px}
+.contact-headline{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.2rem);color:var(--ink);font-style:italic;font-weight:500;margin-bottom:20px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.4}
+.contact-email{font-family:var(--serif2);font-size:1.3rem;color:var(--gold);letter-spacing:.5px;border-bottom:1px solid var(--gold);padding-bottom:3px;display:inline-block;position:relative;transition:letter-spacing .3s}
+.contact-email:hover{letter-spacing:1.5px}
+.contact-detail{font-family:var(--sans);font-size:10px;letter-spacing:1.5px;color:var(--ink3);margin-top:12px;text-transform:uppercase}
+
+.card-form{max-width:420px;margin:32px auto 0;text-align:left;border:1px solid var(--ink);padding:22px;background:var(--paper2);position:relative;overflow:hidden}
+.cf-label{font-family:var(--sans);font-size:8px;letter-spacing:2px;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:5px}
+.cf-row{margin-bottom:14px}
+.cf-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line2);padding:5px 2px;font-family:var(--serif2);font-size:13px;color:var(--ink);outline:none;transition:border-color .2s}
+.cf-input:focus{border-color:var(--gold)}
+textarea.cf-input{resize:none;min-height:60px}
+.cf-btn{margin-top:6px;font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);padding:9px 22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.cf-btn:hover{background:var(--ink);color:var(--paper)}
+.send-seal{position:absolute;top:10px;right:14px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;color:var(--olive);border:1.5px solid var(--olive);border-radius:50%;opacity:0;transform:scale(2.6) rotate(8deg)}
+.send-seal.stamp{animation:sealStamp .6s ease forwards}
+
+.signoff{margin-top:34px;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink3)}
+.colophon{text-align:center;padding:16px;font-family:var(--sans);font-size:8px;letter-spacing:2px;color:var(--ink3);text-transform:uppercase;border-top:1px solid var(--line);position:relative}
+.colophon-hint{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:6px;opacity:0;cursor:default;transition:opacity .4s}
+.colophon-hint:hover{opacity:.3}
+
+.hidden-banner{display:none;background:var(--ink);color:var(--paper);text-align:center;padding:10px;font-family:var(--sans);font-size:10px;letter-spacing:2px;text-transform:uppercase;animation:popIn .4s ease}
+.hidden-banner.show{display:block}
+
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:10px;letter-spacing:1.5px;padding:10px 18px;border-radius:2px;z-index:999;opacity:0;pointer-events:none;transition:opacity .3s, transform .3s;text-transform:uppercase}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
+
+.game-wrap{border:1px solid var(--ink);background:var(--paper2);padding:20px}
+.game-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.game-title{font-family:var(--serif);font-size:1.3rem;color:var(--ink);font-style:italic}
+.game-stats{font-family:var(--sans);font-size:10px;letter-spacing:1px;color:var(--gold2);text-transform:uppercase}
+.match-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;position:relative;min-height:80px}
+.match-card{aspect-ratio:1;border:1px solid var(--line2);background:var(--paper3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:var(--serif);font-size:1.4rem;color:transparent;user-select:none;transition:transform .15s, box-shadow .2s;position:relative}
+.match-card:hover{transform:translateY(-2px)}
+.match-card.flipped{background:var(--paper);color:var(--gold);border-color:var(--gold);animation:popIn .25s ease}
+.match-card.matched{background:var(--paper);color:var(--olive);border-color:var(--olive);cursor:default}
+.match-card.matched::after{content:'';position:absolute;inset:3px;border:1px solid var(--olive);opacity:.4}
+.match-card.shake{animation:cardShake .35s ease}
+@keyframes cardShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.match-card.dealing{animation:cardFlyIn .4s ease backwards}
+.match-card.dealing-out{animation:cardFlyOut .3s ease forwards}
+.confetti-piece{position:absolute;width:5px;height:5px;pointer-events:none;animation:confettiFall 1s ease-in forwards}
+.game-msg{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink2);text-align:center;min-height:18px}
+.game-btn{font-family:var(--sans);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink2);padding:7px 16px;cursor:pointer;transition:all .2s}
+.game-btn:hover{background:var(--ink);color:var(--paper)}
+.game-btn:active{transform:scale(.95)}
+.game-foot{display:flex;justify-content:center;margin-top:14px}
+
+.runner-wrap{border:1px solid var(--ink);background:var(--paper2);padding:18px}
+.runner-canvas-box{position:relative;border:1px solid var(--line2);background:var(--paper);overflow:hidden;height:140px;cursor:pointer}
+.runner-canvas-box::before{content:'';position:absolute;bottom:8px;left:0;right:0;height:1px;background:var(--line2)}
+.runner-quill{position:absolute;bottom:8px;left:30px;font-family:var(--serif);font-size:22px;color:var(--ink);transition:transform .12s;will-change:transform}
+.runner-obstacle{position:absolute;bottom:8px;width:14px;height:24px;background:var(--rust);opacity:.85}
+.runner-score{position:absolute;top:8px;right:12px;font-family:var(--sans);font-size:11px;letter-spacing:1px;color:var(--gold2)}
+.runner-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:rgba(237,229,211,0.92);font-family:var(--serif);font-style:italic;color:var(--ink2);text-align:center;padding:10px}
+.runner-trail{position:absolute;bottom:10px;width:3px;height:3px;background:var(--goldlt);border-radius:50%;pointer-events:none;animation:inkRipple .4s ease-out forwards}
+
+.konami-overlay{position:fixed;inset:0;background:rgba(46,42,32,0.94);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:30px;text-align:center}
+.konami-overlay.show{display:flex;animation:fadeUp .4s ease}
+.konami-seal{width:90px;height:90px;border:3px double var(--goldlt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:34px;color:var(--goldlt);animation:seal .5s ease}
+.konami-title{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--paper2)}
+.konami-text{font-family:var(--serif2);font-size:13px;color:var(--paper3);max-width:380px;line-height:1.8}
+.konami-close{font-family:var(--sans);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:transparent;border:1px solid var(--paper3);padding:8px 18px;cursor:pointer;margin-top:6px}
+.konami-close:hover{background:var(--paper);color:var(--ink)}
+
+.ink-fortune{margin-top:16px;padding:16px;border:1px dashed var(--gold2);background:var(--paper);text-align:center;display:none}
+.ink-fortune.show{display:block;animation:fadeUp .5s ease}
+.fortune-text{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink2);line-height:1.7}
+
+.spin-wrap{border:1px solid var(--ink);background:var(--paper2);padding:20px;text-align:center}
+.spin-wheel-box{position:relative;width:160px;height:160px;margin:0 auto 16px}
+.spin-wheel{width:100%;height:100%;border-radius:50%;border:2px solid var(--ink);position:relative;transition:transform 3s cubic-bezier(.17,.67,.21,1);background:conic-gradient(var(--paper) 0deg 60deg, var(--paper3) 60deg 120deg, var(--paper) 120deg 180deg, var(--paper3) 180deg 240deg, var(--paper) 240deg 300deg, var(--paper3) 300deg 360deg)}
+.spin-pointer{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:14px solid var(--gold);z-index:2}
+.spin-label{position:absolute;font-family:var(--sans);font-size:7px;letter-spacing:1px;color:var(--ink2);text-transform:uppercase;width:60px;text-align:center}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+<h2 class="sr-only">An interactive old-paper-styled portfolio for Aryan Bharat Kumar with hidden easter eggs, animated transitions, and two playable mini-games.</h2>
+
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<div class="page">
+
+  <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="masthead">
+    <div class="click-counter" id="clickCounter">7 clicks to a secret</div>
+    <div class="masthead-top">
+      <span>Est. 2026</span>
+      <span>Vol. I — Personal Edition</span>
+      <span>Dehradun · India</span>
+    </div>
+    <div class="crest" id="crest" title="curious?">A</div>
+    <div class="masthead-name" id="mastName">Aryan Bharat Kumar</div>
+    <div class="masthead-sub">Software Engineer · AI &amp; ML</div>
+    <div class="masthead-tagline"><span id="taglineText"></span><span class="caret"></span></div>
+    <div class="masthead-meta">
+      <span>B.E. CSE · 8.43 CGPA</span>
+      <span>Class of 2026</span>
+      <span>Chandigarh University</span>
+    </div>
+  </div>
+
+  <div class="egg-tracker">
+    <span>Secrets found</span>
+    <div class="egg-dot" data-egg="1"></div>
+    <div class="egg-dot" data-egg="2"></div>
+    <div class="egg-dot" data-egg="3"></div>
+    <div class="egg-dot" data-egg="4"></div>
+    <div class="egg-dot" data-egg="5"></div>
+    <div class="egg-dot" data-egg="6"></div>
+  </div>
+
+  <div class="hidden-banner" id="konamiBanner">A secret chamber has opened below — scroll on, friend</div>
+
+  <div class="nav-strip" id="navStrip">
+    <div class="nav-item on" data-tab="about">Profile</div>
+    <div class="nav-item" data-tab="works">Works</div>
+    <div class="nav-item" data-tab="skills">Ledger</div>
+    <div class="nav-item" data-tab="now">Journal</div>
+    <div class="nav-item" data-tab="contact">Contact</div>
+    <div class="nav-item secret" id="secretTab" data-tab="secret">⁂ Annex</div>
+  </div>
+
+  <div class="flip-stage" id="flipStage">
+  <div id="sec-about" class="section on">
+    <div class="sec-eyebrow">I. Introduction</div>
+    <div class="sec-title">In His Own Words</div>
+
+    <div class="letter">
+      <p><span class="drop">I</span> build real systems — not demos. From shipping a production catalogue at Riyadh Furniture Factory to designing multi-agent orchestrators with Google ADK, my focus has always been the same: clean architecture, provider-agnostic layers, and output that real users can depend on, daily.</p>
+      <p>I am presently completing my Bachelor of Engineering in Computer Science (AI &amp; ML) at Chandigarh University, carrying a cumulative grade average of 8.43 of 10, with graduation set for July of 2026. My curiosity sits at the intersection of large language models, distributed systems, and the discipline of competitive programming.</p>
+    </div>
+
+    <div class="stat-table">
+      <div class="stat-cell" data-secret="cgpa" data-count="8.43"><div class="stat-num" data-target="8.43">0</div><div class="stat-label">CGPA</div></div>
+      <div class="stat-cell" data-count="4"><div class="stat-num" data-target="4" data-roman="IV">0</div><div class="stat-label">Projects</div></div>
+      <div class="stat-cell" data-count="5"><div class="stat-num" data-target="5" data-roman="V">0</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-cell"><div class="stat-num">Top 10</div><div class="stat-label">National Hackathon</div></div>
+    </div>
+
+    <div class="cat-block-title">Provenance</div>
+    <div class="prov-entry">
+      <div class="prov-date">Jun 2025<br>—<br>Aug 2025</div>
+      <div>
+        <div class="prov-role">Software Developer Intern</div>
+        <div class="prov-org">Riyadh Furniture Factory, Saudi Arabia</div>
+        <ul class="prov-list">
+          <li>Designed and shipped a production catalogue platform — Next.js 15, TypeScript, Tailwind CSS — from initial build through live deployment.</li>
+          <li>Worked across the full stack: interface, application logic, and data layer, within a live environment serving real users daily.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="prov-entry">
+      <div class="prov-date">Aug 2022<br>—<br>Jul 2026</div>
+      <div>
+        <div class="prov-role">B.E. Computer Science Engineering</div>
+        <div class="prov-org">Chandigarh University, Mohali</div>
+        <ul class="prov-list">
+          <li>Specialisation in Artificial Intelligence, Machine Learning, and distributed systems fundamentals.</li>
+          <li>Placed in the Top 10 of over 200 competing teams at a National Hackathon, Government of Rajasthan.</li>
+          <li>Active competitive programmer — sliding window, monotonic stacks, dynamic programming.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cat-block-title">A Brief Philosophy <span style="font-size:7px;color:var(--ink3);letter-spacing:0;text-transform:none;font-style:italic">(click a card)</span></div>
+    <div class="phil-grid">
+      <div class="phil-cell" data-msg="A wise pursuit, well noted.">
+        <div class="phil-num">I.</div><div class="phil-title">Real systems, only</div><div class="phil-desc">If it cannot withstand real traffic, it remains a prototype. Every undertaking is built with shipping in mind.</div>
+      </div>
+      <div class="phil-cell" data-msg="Lock-in is the quiet enemy.">
+        <div class="phil-num">II.</div><div class="phil-title">Provider-agnostic</div><div class="phil-desc">Dependency is a quiet debt. Abstraction layers ensure the backend may change without disturbing the whole.</div>
+      </div>
+      <div class="phil-cell" data-msg="From pixel to postgres.">
+        <div class="phil-num">III.</div><div class="phil-title">The full stack, understood</div><div class="phil-desc">From interface to data layer — comprehension of the whole produces wiser decisions at every layer.</div>
+      </div>
+      <div class="phil-cell" data-msg="Nine documents, zero regrets.">
+        <div class="phil-num">IV.</div><div class="phil-title">Specification, first</div><div class="phil-desc">A nine-document brief preceded a single line of code. Clarity, upfront, spares weeks of revision.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sec-works" class="section">
+    <div class="sec-eyebrow">II. Catalogue</div>
+    <div class="sec-title">Selected Works</div>
+
+    <div class="cat-entry">
+      <div class="cat-head">
+        <span class="cat-num">No. I</span>
+        <span class="cat-title">Flow State</span>
+        <span class="cat-tag">AI Pipeline</span>
+      </div>
+      <div class="cat-desc">A real-time focus-monitoring pipeline — Chrome extension, through a Flask event server, into an activity processor, concluding with an LLM reasoner. The provider-agnostic client supports both local inference via Ollama and cloud inference through AWS Bedrock or Claude, with session state persisted across restarts.</div>
+      <div class="cat-materials">Materials — <b>Python</b> · <b>Flask</b> · <b>Claude API</b> · <b>AWS Bedrock</b> · <b>Ollama</b></div>
+    </div>
+
+    <div class="cat-entry">
+      <div class="cat-head">
+        <span class="cat-num">No. II</span>
+        <span class="cat-title">Doceader</span>
+        <span class="cat-tag">RAG Pipeline</span>
+      </div>
+      <div class="cat-desc">An end-to-end document inquiry pipeline, proceeding from ingestion through chunking, embedding, retrieval, and generation. Constructed upon LangChain, ChromaDB, and FastAPI, with particular attention paid to retrieval relevance and the latency each stage imparts upon final output.</div>
+      <div class="cat-materials">Materials — <b>LangChain</b> · <b>ChromaDB</b> · <b>FastAPI</b> · <b>HuggingFace</b></div>
+    </div>
+
+    <div class="cat-entry">
+      <div class="cat-head">
+        <span class="cat-num">No. III</span>
+        <span class="cat-title">Synoptic AI</span>
+        <span class="cat-tag">Multi-Agent</span>
+      </div>
+      <div class="cat-desc">A multi-agent orchestration platform, raised upon Google ADK, Gemini, and FastAPI. Coordinates several specialised agents working concurrently upon a shared task, governed by a dedicated routing and inter-agent communication layer.</div>
+      <div class="cat-materials">Materials — <b>Google ADK</b> · <b>Gemini API</b> · <b>FastAPI</b> · <b>Python</b></div>
+    </div>
+
+    <div class="cat-entry">
+      <div class="cat-head">
+        <span class="cat-num">No. IV</span>
+        <span class="cat-title">GestureShare</span>
+        <span class="cat-tag">Peer-to-Peer</span>
+      </div>
+      <div class="cat-desc">A peer-to-peer file-sharing utility, governed by hand-gesture control. Accompanied by a nine-document technical specification — state machines, wire protocol, platform guides, and testing strategy — composed in full before implementation began.</div>
+      <div class="cat-materials">Materials — <b>Go</b> · <b>Tauri</b> · <b>SvelteKit</b> · <b>P2P Protocol</b></div>
+    </div>
+
+    <div class="cat-block-title">Distinctions</div>
+    <div class="accolade">
+      <div class="acc-mark">I</div>
+      <div>
+        <div class="acc-title">Top 10 of 200+ Teams, National Hackathon</div>
+        <div class="acc-sub">Organised by the Department of Information Technology &amp; Communication, Government of Rajasthan — a placement among the top five percent nationally.</div>
+      </div>
+    </div>
+    <div class="accolade">
+      <div class="acc-mark">II</div>
+      <div>
+        <div class="acc-title">Competitive Programming, Active Standing</div>
+        <div class="acc-sub">Regular study and resolution of advanced problems in sliding window, monotonic stacks, and dynamic programming — composed in optimised Python.</div>
+      </div>
+    </div>
+
+    <div class="cat-block-title">A Small Diversion</div>
+    <div class="runner-wrap">
+      <div class="game-head">
+        <span class="game-title">The Quill Must Leap</span>
+        <span class="game-stats" id="runnerStat">Best: 0</span>
+      </div>
+      <div class="runner-canvas-box" id="runnerBox">
+        <span class="runner-score" id="runnerScore">0</span>
+        <span class="runner-quill" id="runnerQuill">🖋</span>
+        <div class="runner-overlay" id="runnerOverlay">
+          <span>An idle pen sketches nothing.<br>Click or press space to leap the inkwells.</span>
+          <span style="font-family:var(--sans);font-size:9px;letter-spacing:1px;color:var(--gold2);text-transform:uppercase">Click to begin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-block-title">A Wheel of Fortune</div>
+    <div class="spin-wrap">
+      <div class="spin-wheel-box">
+        <div class="spin-pointer"></div>
+        <div class="spin-wheel" id="spinWheel"></div>
+      </div>
+      <div class="game-msg" id="spinMsg">A spin reveals a project, chosen by fate.</div>
+      <button class="game-btn" id="spinBtn" style="margin-top:8px">Spin the wheel</button>
+    </div>
+  </div>
+
+  <div id="sec-skills" class="section">
+    <div class="sec-eyebrow">III. Inventory</div>
+    <div class="sec-title">A Ledger of Craft</div>
+
+    <div class="ledger-row" data-w="90%"><span class="ledger-name">Python &amp; TypeScript</span><span class="ledger-mark">Accomplished</span><div class="ledger-fill" style="--w:90%"></div></div>
+    <div class="ledger-row" data-w="85%"><span class="ledger-name">LLM &amp; AI Pipelines</span><span class="ledger-mark">Accomplished</span><div class="ledger-fill" style="--w:85%"></div></div>
+    <div class="ledger-row" data-w="80%"><span class="ledger-name">Full-Stack — Next.js, FastAPI</span><span class="ledger-mark">Proficient</span><div class="ledger-fill" style="--w:80%"></div></div>
+    <div class="ledger-row" data-w="72%"><span class="ledger-name">Cloud Infrastructure — AWS, Docker</span><span class="ledger-mark">Proficient</span><div class="ledger-fill" style="--w:72%"></div></div>
+    <div class="ledger-row" data-w="60%"><span class="ledger-name">Go &amp; Systems Programming</span><span class="ledger-mark">Developing</span><div class="ledger-fill" style="--w:60%"></div></div>
+    <div class="ledger-row" data-w="88%"><span class="ledger-name">Competitive Programming</span><span class="ledger-mark">Accomplished</span><div class="ledger-fill" style="--w:88%"></div></div>
+
+    <div class="cat-block-title">Tools &amp; Materials</div>
+    <div style="margin-bottom:14px">
+      <div style="font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-bottom:6px">Languages</div>
+      <div class="tag-cloud"><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Go</span><span class="chip">SQL</span><span class="chip">Solidity</span></div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-bottom:6px">Artificial Intelligence &amp; Machine Learning</div>
+      <div class="tag-cloud"><span class="chip">LangChain</span><span class="chip">Google ADK</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">HuggingFace</span><span class="chip">BERT</span></div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-bottom:6px">Backend &amp; Infrastructure</div>
+      <div class="tag-cloud"><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-bottom:6px">Frontend</div>
+      <div class="tag-cloud"><span class="chip">Next.js 15</span><span class="chip">React</span><span class="chip">SvelteKit</span><span class="chip">Tailwind CSS</span><span class="chip">Tauri</span></div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="font-family:var(--sans);font-size:9px;letter-spacing:1.5px;color:var(--ink3);text-transform:uppercase;margin-bottom:6px">Cloud &amp; Platforms</div>
+      <div class="tag-cloud"><span class="chip">AWS Bedrock</span><span class="chip">AWS EC2</span><span class="chip">Oracle OCI</span><span class="chip">Azure AI</span></div>
+    </div>
+
+    <div class="cat-block-title">Seals of Certification</div>
+    <div class="seal-grid">
+      <div class="seal"><div class="seal-icon">A</div><div><div class="seal-name">Claude 101 &amp; Claude Code in Action</div><div class="seal-org">Anthropic Academy</div></div></div>
+      <div class="seal"><div class="seal-icon">O</div><div><div class="seal-name">OCI 2024 Generative AI Professional</div><div class="seal-org">Oracle</div></div></div>
+      <div class="seal"><div class="seal-icon">M</div><div><div class="seal-name">Azure AI Fundamentals, AI-900</div><div class="seal-org">Microsoft</div></div></div>
+      <div class="seal"><div class="seal-icon">U</div><div><div class="seal-name">Applied Machine Learning in Python</div><div class="seal-org">University of Michigan</div></div></div>
+      <div class="seal"><div class="seal-icon">G</div><div><div class="seal-name">GitHub Foundations</div><div class="seal-org">GitHub</div></div></div>
+    </div>
+
+    <div class="cat-block-title">A Game of Memory</div>
+    <div class="game-wrap">
+      <div class="game-head">
+        <span class="game-title">Match the Marks</span>
+        <span class="game-stats" id="moveCounter">Moves: 0</span>
+      </div>
+      <div class="match-grid" id="matchGrid"></div>
+      <div class="game-msg" id="matchMsg">Find every matching pair of seals.</div>
+      <div class="game-foot"><button class="game-btn" id="resetMatch">Shuffle again</button></div>
+    </div>
+  </div>
+
+  <div id="sec-now" class="section">
+    <div class="sec-eyebrow">IV. Current Affairs</div>
+    <div class="sec-title">From the Journal</div>
+
+    <div class="journal-entry">
+      <div class="journal-date">Ongoing</div>
+      <div class="journal-text"><b>BUILDING —</b> a final-year capstone: a production-grade multi-LLM orchestration system featuring failover routing and cost-aware model selection.</div>
+    </div>
+    <div class="journal-entry">
+      <div class="journal-date">This Month</div>
+      <div class="journal-text"><b>STUDYING —</b> the inner workings of transformers — attention mechanisms, positional encoding — alongside frameworks for RAG evaluation.</div>
+    </div>
+    <div class="journal-entry">
+      <div class="journal-date">Aug 2025</div>
+      <div class="journal-text"><b>CONCLUDED —</b> a software engineering internship at Riyadh Furniture Factory, having shipped a production catalogue in daily use.</div>
+    </div>
+    <div class="journal-entry">
+      <div class="journal-date">Jun 2025</div>
+      <div class="journal-text"><b>COMPLETED —</b> the Synoptic AI multi-agent platform, with its inter-agent communication layer tested under concurrent task execution.</div>
+    </div>
+    <div class="journal-entry" style="border-bottom:none">
+      <div class="journal-date">Ongoing</div>
+      <div class="journal-text"><b>COMPETING —</b> a continued presence in competitive programming, presently occupied with advanced dynamic programming and segment trees.</div>
+    </div>
+
+    <div class="cat-block-title">Consult the Almanac</div>
+    <div style="text-align:center">
+      <button class="game-btn" id="fortuneBtn">Draw a fortune</button>
+      <div class="ink-fortune" id="fortuneBox">
+        <div class="fortune-text" id="fortuneText">—</div>
+      </div>
+    </div>
+
+    <div class="cat-block-title" style="margin-top:24px">In Search Of</div>
+    <div class="letter" style="font-size:14px">
+      <p>Roles at the intersection of large language models and production software — inference infrastructure, agentic frameworks, or full-stack artificial intelligence applications. Open to full-time positions, internships, and considered collaborations. Graduating in July of 2026.</p>
+    </div>
+  </div>
+
+  <div id="sec-contact" class="section">
+    <div class="contact-section">
+      <div class="contact-eyebrow">V. Correspondence</div>
+      <div class="contact-headline">"I should be glad to hear from those building something worth the effort."</div>
+      <a class="contact-email" href="mailto:ar22073yan@gmail.com">ar22073yan@gmail.com</a>
+      <div class="contact-detail">+91 7906012018 &nbsp;·&nbsp; Dehradun, India &nbsp;·&nbsp; GitHub &nbsp;·&nbsp; LinkedIn</div>
+
+      <div class="card-form">
+        <div class="send-seal" id="sendSeal">✓</div>
+        <div class="cf-row">
+          <label class="cf-label">Your Name</label>
+          <input class="cf-input" type="text" placeholder="As you would have it written">
+        </div>
+        <div class="cf-row">
+          <label class="cf-label">Your Correspondence</label>
+          <input class="cf-input" type="email" placeholder="name@domain.com">
+        </div>
+        <div class="cf-row">
+          <label class="cf-label">Your Message</label>
+          <textarea class="cf-input" id="msgBox" placeholder="What are you building? (try typing a secret word)"></textarea>
+        </div>
+        <button class="cf-btn" id="sendBtn">Send Word</button>
+      </div>
+
+      <div class="signoff">— Yours in good faith, Aryan</div>
+    </div>
+  </div>
+
+  <div id="sec-secret" class="section">
+    <div class="sec-eyebrow">⁂ Hidden Annex</div>
+    <div class="sec-title">For the Patient Reader</div>
+    <div class="letter">
+      <p>You have done what most will not — lingered, clicked, and looked beneath the page. That is, in its way, the whole of the philosophy above: real curiosity finds what casual visitors miss.</p>
+      <p>Here is the truth in plain ink: I am presently looking for the sort of role where someone cares enough to read the fine print, much as you just did. If that describes you and your team, write to me — mention the word "annex" in your message, and I will know precisely how you found your way here.</p>
+    </div>
+    <div class="divider-orn"><span>✦</span></div>
+    <div style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:var(--ink3);text-transform:uppercase;text-align:center">Discovered easter eggs: <span id="eggCount">0</span> / 6</div>
+  </div>
+  </div>
+
+  <div class="colophon">Aryan Bharat Kumar · Personal Archive · MMXXVI <span class="colophon-hint" id="colophonHint" title="↑↑↓↓←→←→BA">·</span></div>
+
+</div>
+
+<div class="konami-overlay" id="konamiOverlay">
+  <div class="konami-seal">⚜</div>
+  <div class="konami-title">A Hidden Order, Revealed</div>
+  <div class="konami-text">You have entered the old sequence — the one only the truly nostalgic remember. Few find this page. Fewer still type it correctly on the first attempt. Consider yourself amongst very good company.</div>
+  <button class="konami-close" id="konamiClose">Close the chamber</button>
+</div>
+
+<div class="toast" id="toast">Found a secret</div>
+
+<script>
+let eggsFound = new Set();
+const eggTotal = 6;
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function updateEggDots(){
+  document.querySelectorAll('.egg-dot').forEach((dot,i)=>{
+    if(i < eggsFound.size) dot.classList.add('lit'); else dot.classList.remove('lit');
+  });
+  const counter = document.getElementById('eggCount');
+  if(counter) counter.textContent = Math.min(eggsFound.size, eggTotal);
+}
+function unlockEgg(name, msg){
+  if(eggsFound.has(name)) return;
+  eggsFound.add(name);
+  showToast(msg);
+  updateEggDots();
+  if(eggsFound.size >= 3){
+    document.getElementById('secretTab').classList.add('unlocked');
+  }
+}
+
+document.addEventListener('mousemove', (e)=>{
+  const trail = document.createElement('div');
+  trail.className = 'cursor-trail';
+  trail.style.left = (e.clientX) + 'px';
+  trail.style.top = (e.clientY) + 'px';
+  trail.style.opacity = '0.5';
+  document.body.appendChild(trail);
+  setTimeout(()=>{ trail.style.opacity='0'; }, 250);
+  setTimeout(()=>{ trail.remove(); }, 500);
+});
+
+const page = document.querySelector('.page');
+function updateProgress(){
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+  document.getElementById('progressFill').style.width = Math.min(100, Math.max(0,pct)) + '%';
+}
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
+const tagline = "Real systems, built with intention";
+const taglineEl = document.getElementById('taglineText');
+let ti = 0;
+function typeTagline(){
+  if(ti <= tagline.length){
+    taglineEl.textContent = tagline.slice(0, ti);
+    ti++;
+    setTimeout(typeTagline, 38);
+  }
+}
+typeTagline();
+
+document.querySelectorAll('.stat-num[data-target]').forEach(el=>{
+  const target = el.dataset.target;
+  const roman = el.dataset.roman;
+  const isFloat = target.includes('.');
+  const endVal = parseFloat(target);
+  let frame = 0;
+  const totalFrames = 40;
+  const counter = setInterval(()=>{
+    frame++;
+    const progress = frame/totalFrames;
+    const val = endVal * Math.min(1, progress);
+    el.textContent = isFloat ? val.toFixed(2) : Math.round(val);
+    if(frame >= totalFrames){
+      clearInterval(counter);
+      el.textContent = roman ? roman : target;
+    }
+  }, 25);
+});
+
+const mastName = document.getElementById('mastName');
+mastName.innerHTML = mastName.textContent.split('').map(ch=>
+  ch === ' ' ? ' ' : '<span class="lt">'+ch+'</span>'
+).join('');
+
+let crestClicks = 0;
+const crest = document.getElementById('crest');
+const counterEl = document.getElementById('clickCounter');
+crest.addEventListener('click', (e)=>{
+  crestClicks++;
+  crest.classList.remove('wobbling');
+  void crest.offsetWidth;
+  crest.classList.add('wobbling');
+  const ripple = document.createElement('div');
+  ripple.className = 'crest-ripple';
+  crest.appendChild(ripple);
+  setTimeout(()=>ripple.remove(), 650);
+  if(crestClicks >= 3 && crestClicks < 7){
+    counterEl.classList.add('show');
+    counterEl.textContent = (7 - crestClicks) + ' clicks to a secret';
+  }
+  if(crestClicks === 7){
+    counterEl.textContent = 'A patient hand finds patient things';
+    unlockEgg('crest7', 'The crest remembers seven knocks');
+  }
+});
+
+document.querySelectorAll('.phil-cell').forEach(cell=>{
+  cell.addEventListener('click', (e)=>{
+    const rect = cell.getBoundingClientRect();
+    const burst = document.createElement('div');
+    burst.className = 'ink-burst';
+    const size = 10;
+    burst.style.width = size+'px';
+    burst.style.height = size+'px';
+    burst.style.left = (e.clientX - rect.left - size/2)+'px';
+    burst.style.top = (e.clientY - rect.top - size/2)+'px';
+    cell.appendChild(burst);
+    setTimeout(()=>burst.remove(), 650);
+    showToast(cell.dataset.msg);
+    unlockEgg('philosophy', 'A philosophy, acknowledged');
+  });
+});
+
+document.querySelector('.stat-cell[data-secret="cgpa"]').addEventListener('click', ()=>{
+  showToast('8.43 — earned, not rounded up');
+});
+
+const fortunes = [
+  "The system you fear breaking is the one worth understanding fully first.",
+  "A clean abstraction today spares a long evening three months from now.",
+  "Ship the small thing. The large thing was never going to ship anyway.",
+  "Your best architecture decision will look obvious in hindsight and impossible beforehand.",
+  "The bug is rarely where you are looking. Look one layer down.",
+  "Specifications written before code age far better than code written before specifications.",
+  "A provider-agnostic layer is a letter to your future, less patient self."
+];
+document.getElementById('fortuneBtn').addEventListener('click', ()=>{
+  const box = document.getElementById('fortuneBox');
+  const text = document.getElementById('fortuneText');
+  text.textContent = fortunes[Math.floor(Math.random()*fortunes.length)];
+  box.classList.remove('show');
+  void box.offsetWidth;
+  box.classList.add('show');
+  unlockEgg('fortune', 'The almanac speaks true');
+});
+
+document.getElementById('msgBox').addEventListener('input', function(e){
+  if(e.target.value.toLowerCase().includes('annex')){
+    unlockEgg('annexword', 'You knew the word already');
+  }
+});
+
+document.getElementById('sendBtn').addEventListener('click', (e)=>{
+  e.preventDefault();
+  const seal = document.getElementById('sendSeal');
+  seal.classList.remove('stamp');
+  void seal.offsetWidth;
+  seal.classList.add('stamp');
+  showToast('Your word is sealed and sent');
+});
+
+const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let konamiPos = 0;
+document.addEventListener('keydown', (e)=>{
+  const key = e.key;
+  if(key === konamiSeq[konamiPos] || key.toLowerCase() === konamiSeq[konamiPos]){
+    konamiPos++;
+    if(konamiPos === konamiSeq.length){
+      document.getElementById('konamiOverlay').classList.add('show');
+      document.getElementById('konamiBanner').classList.add('show');
+      unlockEgg('konami', 'The old sequence still works');
+      konamiPos = 0;
+    }
+  } else {
+    konamiPos = (key === konamiSeq[0]) ? 1 : 0;
+  }
+});
+document.getElementById('konamiClose').addEventListener('click', ()=>{
+  document.getElementById('konamiOverlay').classList.remove('show');
+});
+
+document.querySelectorAll('.ledger-fill').forEach((f,i)=>{
+  setTimeout(()=>f.classList.add('go'), 200 + i*120);
+});
+
+document.querySelectorAll('.nav-item[data-tab]').forEach(item=>{
+  item.addEventListener('click',(e)=>{
+    const tab = item.dataset.tab;
+    const current = document.querySelector('.section.on');
+    if(current && current.id === 'sec-'+tab) return;
+
+    const rect = item.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const size = 60;
+    ripple.style.width = size+'px';
+    ripple.style.height = size+'px';
+    ripple.style.left = (e.clientX - rect.left - size/2)+'px';
+    ripple.style.top = (e.clientY - rect.top - size/2)+'px';
+    item.appendChild(ripple);
+    setTimeout(()=>ripple.remove(), 550);
+
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('on'));
+    item.classList.add('on');
+
+    if(current){
+      current.classList.remove('on');
+      current.classList.add('flip-out');
+      setTimeout(()=>{
+        current.classList.remove('flip-out');
+        current.style.display = 'none';
+        const next = document.getElementById('sec-'+tab);
+        next.classList.add('flip-in');
+        next.style.display = 'block';
+        setTimeout(()=>{
+          next.classList.remove('flip-in');
+          next.classList.add('on');
+        }, 360);
+      }, 350);
+    } else {
+      document.getElementById('sec-'+tab).classList.add('on');
+    }
+  });
+});
+
+const matchSymbols = ['A','B','K','✦','◆','✦','◆','A','B','K'];
+let matchState = [];
+let flippedCards = [];
+let matchedCount = 0;
+let moveCount = 0;
+let lockBoard = false;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function spawnConfetti(container){
+  const colors = ['var(--gold)','var(--olive)','var(--goldlt)','var(--rust)'];
+  for(let i=0;i<14;i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.background = colors[i % colors.length];
+    piece.style.left = (40 + Math.random()*220) + 'px';
+    piece.style.top = '0px';
+    piece.style.animationDelay = (Math.random()*0.2)+'s';
+    container.appendChild(piece);
+    setTimeout(()=>piece.remove(), 1300);
+  }
+}
+
+function buildMatchGrid(animateShuffle){
+  const grid = document.getElementById('matchGrid');
+  const existingCards = grid.querySelectorAll('.match-card');
+
+  function place(){
+    grid.innerHTML = '';
+    matchState = shuffle(matchSymbols);
+    flippedCards = [];
+    matchedCount = 0;
+    moveCount = 0;
+    lockBoard = false;
+    document.getElementById('moveCounter').textContent = 'Moves: 0';
+    document.getElementById('matchMsg').textContent = 'Find every matching pair of seals.';
+    matchState.forEach((sym, idx)=>{
+      const card = document.createElement('div');
+      card.className = 'match-card dealing';
+      card.style.setProperty('--sx', (Math.random()*200-100)+'px');
+      card.style.setProperty('--sy', (-60-Math.random()*40)+'px');
+      card.style.setProperty('--sr', (Math.random()*360-180)+'deg');
+      card.style.animationDelay = (idx*0.05)+'s';
+      card.dataset.symbol = sym;
+      card.dataset.idx = idx;
+      card.textContent = sym;
+      card.addEventListener('click', ()=>onCardClick(card));
+      grid.appendChild(card);
+      setTimeout(()=>card.classList.remove('dealing'), 450 + idx*50);
+    });
+  }
+
+  if(animateShuffle && existingCards.length){
+    document.getElementById('matchMsg').textContent = 'Shuffling the deck...';
+    existingCards.forEach((card,idx)=>{
+      card.classList.add('dealing-out');
+      card.style.setProperty('--dx', (Math.random()*200-100)+'px');
+      card.style.setProperty('--dy', (-60-Math.random()*40)+'px');
+      card.style.setProperty('--dr', (Math.random()*360-180)+'deg');
+      card.style.animationDelay = (idx*0.03)+'s';
+    });
+    setTimeout(place, 420);
+  } else {
+    place();
+  }
+}
+
+function onCardClick(card){
+  if(lockBoard) return;
+  if(card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  flippedCards.push(card);
+  if(flippedCards.length === 2){
+    moveCount++;
+    document.getElementById('moveCounter').textContent = 'Moves: ' + moveCount;
+    lockBoard = true;
+    const [c1, c2] = flippedCards;
+    if(c1.dataset.symbol === c2.dataset.symbol){
+      c1.classList.add('matched');
+      c2.classList.add('matched');
+      matchedCount += 2;
+      flippedCards = [];
+      lockBoard = false;
+      if(matchedCount === matchState.length){
+        document.getElementById('matchMsg').textContent = 'Completed in ' + moveCount + ' moves. A fine memory.';
+        spawnConfetti(document.getElementById('matchGrid'));
+        unlockEgg('memorymatch', 'The seals all found their pairs');
+      }
+    } else {
+      c1.classList.add('shake');
+      c2.classList.add('shake');
+      setTimeout(()=>{
+        c1.classList.remove('flipped','shake');
+        c2.classList.remove('flipped','shake');
+        flippedCards = [];
+        lockBoard = false;
+      }, 650);
+    }
+  }
+}
+document.getElementById('resetMatch').addEventListener('click', ()=>buildMatchGrid(true));
+buildMatchGrid(false);
+
+let runnerRunning = false;
+let runnerScore = 0;
+let runnerBest = 0;
+let runnerJumping = false;
+let runnerY = 0;
+let runnerVel = 0;
+let runnerObstacles = [];
+let runnerTick = null;
+let runnerSpeed = 3.2;
+let runnerFrame = 0;
+
+const runnerBox = document.getElementById('runnerBox');
+const runnerQuill = document.getElementById('runnerQuill');
+const runnerOverlay = document.getElementById('runnerOverlay');
+const runnerScoreEl = document.getElementById('runnerScore');
+const runnerStatEl = document.getElementById('runnerStat');
+
+function startRunner(){
+  if(runnerRunning) return;
+  runnerRunning = true;
+  runnerOverlay.style.display = 'none';
+  runnerScore = 0;
+  runnerSpeed = 3.2;
+  runnerFrame = 0;
+  runnerObstacles.forEach(o=>o.el.remove());
+  runnerObstacles = [];
+  runnerY = 0;
+  runnerVel = 0;
+  runnerJumping = false;
+  runnerScoreEl.textContent = '0';
+  runnerTick = setInterval(runnerLoop, 20);
+}
+
+function jumpRunner(){
+  if(!runnerRunning){ startRunner(); return; }
+  if(!runnerJumping){
+    runnerJumping = true;
+    runnerVel = 7.2;
+    const trail = document.createElement('div');
+    trail.className = 'runner-trail';
+    trail.style.left = '36px';
+    runnerBox.appendChild(trail);
+    setTimeout(()=>trail.remove(), 450);
+  }
+}
+
+function endRunner(){
+  runnerRunning = false;
+  clearInterval(runnerTick);
+  if(runnerScore > runnerBest){
+    runnerBest = runnerScore;
+    unlockEgg('runnerhigh', 'A new best among the inkwells');
+  }
+  runnerStatEl.textContent = 'Best: ' + runnerBest;
+  runnerOverlay.style.display = 'flex';
+  runnerOverlay.innerHTML = '<span>The quill caught an inkwell. Final score: '+runnerScore+'</span><span style="font-family:var(--sans);font-size:9px;letter-spacing:1px;color:var(--gold2);text-transform:uppercase">Click to try again</span>';
+}
+
+function runnerLoop(){
+  runnerFrame++;
+  if(runnerJumping){
+    runnerY += runnerVel;
+    runnerVel -= 0.55;
+    if(runnerY <= 0){ runnerY = 0; runnerJumping = false; runnerVel = 0; }
+    runnerQuill.style.transform = 'translateY(-' + runnerY * 4 + 'px) rotate(' + (runnerVel*2) + 'deg)';
+  }
+  if(runnerFrame % Math.max(30, Math.floor(70 - runnerSpeed*5)) === 0){
+    const ob = document.createElement('div');
+    ob.className = 'runner-obstacle';
+    ob.style.left = '320px';
+    runnerBox.appendChild(ob);
+    runnerObstacles.push({el: ob, x: 320});
+  }
+  runnerObstacles.forEach(o=>{
+    o.x -= runnerSpeed;
+    o.el.style.left = o.x + 'px';
+  });
+  runnerObstacles = runnerObstacles.filter(o=>{
+    if(o.x < -20){ o.el.remove(); return false; }
+    return true;
+  });
+  const quillLeft = 30, quillRight = 52, quillBottom = runnerY*4;
+  for(const o of runnerObstacles){
+    if(o.x < quillRight && o.x + 14 > quillLeft && quillBottom < 26){
+      endRunner();
+      return;
+    }
+  }
+  if(runnerFrame % 8 === 0){
+    runnerScore++;
+    runnerScoreEl.textContent = runnerScore;
+    if(runnerScore % 15 === 0) runnerSpeed += 0.3;
+  }
+}
+
+runnerBox.addEventListener('click', jumpRunner);
+document.addEventListener('keydown', (e)=>{
+  if(e.code === 'Space' && document.getElementById('sec-works').classList.contains('on')){
+    e.preventDefault();
+    jumpRunner();
+  }
+});
+
+const spinProjects = ['Flow State','Doceader','Synoptic AI','GestureShare','RFF Internship','Hackathon Win'];
+const wheel = document.getElementById('spinWheel');
+let spinAngle = 0;
+let spinning = false;
+document.getElementById('spinBtn').addEventListener('click', ()=>{
+  if(spinning) return;
+  spinning = true;
+  const extraTurns = 4 + Math.random()*2;
+  const finalOffset = Math.random()*360;
+  spinAngle += extraTurns*360 + finalOffset;
+  wheel.style.transform = 'rotate('+spinAngle+'deg)';
+  document.getElementById('spinMsg').textContent = 'The wheel turns...';
+  setTimeout(()=>{
+    const normalized = (360 - (spinAngle % 360)) % 360;
+    const idx = Math.floor(normalized / 60) % spinProjects.length;
+    document.getElementById('spinMsg').textContent = 'Fate selects: ' + spinProjects[idx];
+    spinning = false;
+    unlockEgg('wheelspin', 'Fate has been consulted');
+  }, 3100);
+});
+
+document.getElementById('colophonHint').addEventListener('mouseenter', ()=>{
+  showToast('Try the old sequence: arrows then B, A');
+  unlockEgg('hintfound', 'A hint, noticed');
+});
+</script>
+</body>
+</html>
