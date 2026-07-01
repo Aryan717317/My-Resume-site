@@ -41,7 +41,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif2);min-heig
 @keyframes magnify{0%{transform:scale(1)}100%{transform:scale(1.6)}}
 @keyframes driftSlow{0%{transform:translateX(0)}100%{transform:translateX(-12px)}}
 
-.page{max-width:900px;margin:0 auto;padding:0 24px;position:relative}
+.page{max-width:780px;margin:0 auto;padding:0 20px;position:relative}
 
 .cursor-trail{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--goldlt);pointer-events:none;z-index:998;opacity:0;transition:opacity .2s}
 
@@ -116,7 +116,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif2);min-heig
 .prov-list li{padding-left:14px;position:relative;margin-bottom:3px}
 .prov-list li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--gold2)}
 
-.phil-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
 .phil-cell{background:var(--paper2);padding:24px 20px;cursor:pointer;transition:background .2s, transform .2s;position:relative;overflow:hidden}
 .phil-cell:hover{background:var(--paper3);transform:scale(1.02);z-index:2}
 .phil-cell:active{transform:scale(0.98)}
@@ -157,7 +157,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--serif2);min-heig
 .cat-block-title{font-family:var(--sans);font-size:9px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin:22px 0 10px;display:flex;align-items:center;gap:10px}
 .cat-block-title::after{content:'';flex:1;height:1px;background:var(--line2)}
 
-.seal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.seal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .seal{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line2);background:var(--paper2);cursor:pointer;transition:transform .2s, border-color .2s}
 .seal:hover{transform:translateY(-2px);border-color:var(--gold)}
 .seal-icon{width:26px;height:26px;border:1px solid var(--gold);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:11px;color:var(--gold);transition:transform .3s}
